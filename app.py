@@ -18,7 +18,7 @@ from tkintermapview import TkinterMapView
 from multiprocessing import Process, Manager
 from app_util import CTkDictInput, CTkMessageBox
 
-customtkinter.set_appearance_mode("System")
+customtkinter.set_appearance_mode("Dark")
 customtkinter.set_default_color_theme("dark-blue")
 
 class App(customtkinter.CTk):
@@ -224,6 +224,8 @@ class App(customtkinter.CTk):
         for marker in self.map_markers:
             marker.delete()
         self.reference_marker.delete() if self.reference_marker is not None else self.debug_print("Reference not set")
+        with self.position_q.mutex:
+            self.position_q.queue.clear()
 
     def change_map(self, new_map: str):
         if new_map == "Google normal":
