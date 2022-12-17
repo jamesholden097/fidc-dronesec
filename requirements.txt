@@ -1,0 +1,8 @@
+customtkinter==5.0.3
+dronekit==2.9.2
+NavPy==1.0
+numpy==1.21.6
+Pillow==9.3.0
+pymavlink==2.4.37
+tkintermapview==1.19
+tqdm==4.64.1
