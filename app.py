@@ -29,7 +29,7 @@ class App(customtkinter.CTk):
 
         super().__init__()
 
-        self.title("Ants Colony")
+        self.title("SkySentinel")
         self.geometry(f"{App.WIDTH}x{App.HEIGHT}")
         self.minsize(App.WIDTH, App.HEIGHT)
         self.resizable(True, True)
