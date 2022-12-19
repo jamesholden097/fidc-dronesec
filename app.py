@@ -30,18 +30,20 @@ class App(customtkinter.CTk):
         super().__init__()
 
         self.title("SkySentinel")
+        # self.icon = self.iconbitmap('preview.ico')
         self.geometry(f"{App.WIDTH}x{App.HEIGHT}")
         self.minsize(App.WIDTH, App.HEIGHT)
         self.resizable(True, True)
         self.protocol("WM_DELETE_WINDOW", self.on_closing)
 
 
-        self.grid_columnconfigure(1, weight=1)
+        self.grid_rowconfigure(0, weight=1)
         self.grid_rowconfigure(0, weight=1)
         self.grid_columnconfigure(0, weight=0)
-        self.grid_columnconfigure(1, weight=1)
-        self.grid_rowconfigure(0, weight=1)
         self.grid_rowconfigure(1, weight=0)
+        self.grid_columnconfigure(1, weight=1)
+        self.grid_columnconfigure(1, weight=1)
+
 
         self.frame_left = customtkinter.CTkFrame(master=self)
         self.frame_left.grid(row=0, column=0, rowspan=2, sticky="nsew")
@@ -64,6 +66,10 @@ class App(customtkinter.CTk):
         self.drone_markers = []
         self.map_markers = []
         self.reference_marker = None
+        #self.di = 
+        # self.di = self.di
+        # self.di.show()
+        self.drone_icon = ImageTk.PhotoImage(image=Image.open(f'{os.getcwd()}\\preview.png').resize((96, 96)))
         self.drone_paths = []
 
         self.connection_strings = None
@@ -442,7 +448,7 @@ class App(customtkinter.CTk):
                     if drone.connected:
                         lattitude, longitude, altitude = drone.get_position_lla()
                         state = "ARMED" if drone.armed else "DISARMED"
-                        self.drone_markers.append(self.map_widget.set_marker(lattitude, longitude, text=f"Drone {drone.index}| {drone.mode} | {state} | {altitude:.1f}m"))
+                        self.drone_markers.append(self.map_widget.set_marker(lattitude, longitude, text=f"Drone {drone.index}| {drone.mode} | {state} | {altitude:.1f}m", icon=self.drone_icon))
 
                         progressbar_dir *= -1
                         self.connection_progressbar.set((drone.index + 1) / fleet_size)
